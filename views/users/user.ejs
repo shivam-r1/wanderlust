@@ -1,0 +1,40 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+    <h2 style="text-align: center; text-decoration: underline;" class="mt-2">Your Profile</h2>
+    <div class="user">
+        <i class="fa-solid fa-user"></i>
+        <p>Username : <%=user.username%></p>
+        <p>Email : <%=user.email%></p>
+    </div>
+    <h5>Your Listings</h5>
+    <hr>
+    <% if(userListing.length==0) { %>
+        <h4 class="noListing mb-4"><i class="fa-solid fa-magnifying-glass"></i> &nbsp;No listing. create your own listing! <a class="add-lis" href="/listings/new">Add Your Listing</a></h4>
+    <%}%>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+
+        <% for(let listing of userListing){%>
+            <a href="/listings/<%=listing._id%>" class="listing-link">
+                <div class="card col listing-card">
+                    <div class="imgHovers mb-2" style="box-shadow: 10px 10px 10px rgba(0,0,0, 0.45);">
+                        <p>
+                            <%= listing.like.length %>
+                        </p>
+                        <img src="<%= listing.image.url %>" class="card-img-top imgHover lis-card" id="imgh"
+                            alt="listing_image" style="height: 20rem;" />
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b>
+                                <%=listing.title%>
+                            </b> <br>
+                            &#8377; <%= listing.price.toLocaleString("en-IN")%>/night
+                                <i id="tax-info">&nbsp; &nbsp; +18% GST</i>
+                        </p>
+                    </div>
+                </div>
+            </a>
+            <%}%>
+    </div>
+</body>

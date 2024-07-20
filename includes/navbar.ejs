@@ -1,0 +1,265 @@
+<style>
+  .search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+  .search-btn span{
+    margin-left: 0.5rem;
+  }
+  .search-btn:hover {
+    background-color: #fe424d;
+    color: #fff;
+  }
+
+  .search-btn i {
+    display: inline;
+  }
+
+  @media (max-width:400px) {
+    .search-btn span{
+      display: none;
+    }
+  }
+
+  .search-inp {
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #6e6969;
+    border-radius: 20%;
+    height: 3rem;
+    padding: 5px 10px;
+    box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
+    transition: all 0.3s;
+  }
+
+  .profile:hover {
+    transform: scale(1);
+    box-shadow: -3px -3px 7px #ffffff73, 4px 4px 15px rgba(94, 104, 121, 0.388);
+  }
+
+  .profile i {
+    font-size: 2rem;
+    width: 3rem;
+    text-align: center;
+  }
+
+  .profile span {
+    font-size: 1rem;
+    margin-left: 5px;
+    margin-right: 8px;
+    display: none;
+  }
+
+
+  .sub-menu-wrap {
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    width: 250px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    box-shadow: 4px 8px 9px rgba(0, 0, 0, 0.5), -6px -6px 20px rgba(0, 0, 0, 0.19);
+  }
+
+  .sub-menu-wrap.open-menu {
+    max-height: 400px;
+  }
+
+  .sub-menu {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .user-info h3 {
+    font-weight: 500;
+    color: #5a5656;
+  }
+
+  .user-info i {
+    background-color: #fff;
+    font-size: 2rem;
+    margin-right: 10px;
+    color: #5a5656;
+    border: none;
+    margin-top: -10px;
+  }
+
+  .sub-menu hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #1f0909;
+    margin: 2px 0 5px;
+  }
+
+  .sub-menu-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 10px 0;
+  }
+
+  .sub-menu-link p {
+    width: 100%;
+    top: 8px;
+    position: relative;
+  }
+
+  .sub-menu-link i {
+    width: 40px;
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+    color: #525252;
+  }
+
+  .sub-menu-link span {
+    font-size: 22px;
+    transition: transform 0.5s;
+  }
+
+  .sub-menu-link:hover span {
+    transform: translateX(5px);
+  }
+
+  .sub-menu-link:hover p {
+    font-weight: 700;
+  }
+  .toggle-nav{
+    position: absolute;
+    top: 108%;
+    width: 100%;
+    left: 0;
+    padding: 0px 5px 0 5px;
+    background-color: #F8F9FA;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s;
+  }
+  .toggle-nav.open{
+    max-height: 7rem;
+  }
+
+  @media (max-width:767px) {
+    .profile span {
+      display: inline;
+    }
+    
+  }
+  @media (min-width:767px) {
+    .toggle-nav{
+      display: none;
+    }
+  }
+</style>
+<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand " href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <div class="navbar-nav me-auto ">
+      <a class="nav-link" href="/listings" style="font-weight: 600; font-size: larger;">Explore</a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+
+      <div class="navbar-nav ms-auto">
+        <form action="" role="search" class="d-flex">
+          <input type="search" class="form-control me-2 search-inp" placeholder="Search Destinations" name="search">
+          <button class="btn search-btn" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
+        </form>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Add Your Listing</a>
+      </div>
+    </div>
+
+    <div class="profile">
+      <span class="navbar-toggler-icon" onclick="toggleNav()" ></span>
+      <i class="fa-solid fa-circle-user" onclick="toggleMenu()"></i>
+    </div>
+    <div class="toggle-nav">
+     <div class="ms-auto mt-3 mb-2">
+      <form action="" role="search" class="d-flex">
+        <input type="search" class="form-control me-2 search-inp" placeholder="Search Destinations" name="search">
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i><span>Search</span>
+        </button>
+      </form>
+    </div>
+    <div class="ms-auto mb-3 ps-2">
+      <a class="nav-link" href="/listings/new">Add Your Listing</a>
+    </div>
+    </div>
+    <div class="sub-menu-wrap" id="sub-menu">
+      <div class="sub-menu">
+        <%if(currUser){%>
+          <div class="user-info">
+            <i class="fa-solid fa-user"></i>
+            <h3><%=currUser.username%></h3>
+          </div>
+        <%}else{%>
+          <div class="user-info">
+            <i class="fa-solid fa-user"></i>
+            <h3>No User</h3>
+          </div>
+          <%}%>
+        <hr>
+        <a href="/listings/user" class="sub-menu-link">
+          <i class="fa-regular fa-address-card"></i>
+          <p>See Profile</p>
+          <span>></span>
+        </a>
+        <% if(!currUser){%>
+          <a href="/login" class="sub-menu-link nav-link">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <p>Login</p>
+            <span>></span>
+          </a>
+          <a href="/signup" class="sub-menu-link nav-link">
+            <i class="fa-solid fa-user-plus"></i>
+            <p>SignUp</p>
+            <span>></span>
+          </a>
+          <%} %>
+            <% if(currUser){%>
+              <a href="/logout" class="sub-menu-link nav-link" style="margin-bottom: 0;">
+                <i class="fa-solid fa-person-through-window"></i>
+                <p>Logout</p>
+                <span>></span>
+              </a>
+              <%}%>
+      </div>
+    </div>
+  </div>
+</nav>
+<script>
+  const menu = document.querySelector("#sub-menu");
+  const toggle = document.querySelector('.toggle-nav');
+  function toggleMenu() {
+    menu.classList.toggle('open-menu');
+  }
+
+  function toggleNav(){
+    toggle.classList.toggle('open');
+  }
+</script>

@@ -1,0 +1,236 @@
+<% layout("/layouts/boilerplate") %>
+
+    <body>
+        <div id="flash-container"></div> <!-- Flash message container -->
+        <div id="sec-nav">
+            <div id="filters">
+                <a href="/listings?genre=Trending" id="Trending">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-fire"></i></div>
+                        <p>Trending</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Rooms" id="Rooms">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-bed"></i></div>
+                        <p>Rooms</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Cities" id="Cities">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-mountain-city"></i></div>
+                        <p>Iconic Cities</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Mountains" id="Mountains">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-mountain"></i></div>
+                        <p>Mountains</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Castles" id="Castles">
+                    <div class="filter">
+                        <div><i class="fa-brands fa-fort-awesome"></i></div>
+                        <p>Castles</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Pools" id="Pools">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-person-swimming"></i></div>
+                        <p>Amazing Pools</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Camping" id="Camping">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-campground"></i></div>
+                        <p>Camping</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Farms" id="Farms">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-cow"></i></div>
+                        <p>Farms</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Arctic" id="Arctic">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-snowflake"></i></div>
+                        <p>Arctic</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Domes" id="Domes">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-igloo"></i></div>
+                        <p>Domes</p>
+                    </div>
+                </a>
+                <a href="/listings?genre=Boats" id="Boats">
+                    <div class="filter">
+                        <div><i class="fa-solid fa-ship"></i></div>
+                        <p>Boats</p>
+                    </div>
+                </a>
+            </div>
+            <div class="tax-toggle">
+                <div class="form-check-reverse form-switch">
+                    <input type="checkbox" class="form-check-input" role="switch" id="flexSwitchCheckDefault">
+                    <label for="flexSwitchCheckDefault" class="form-check-label" style="width: 12rem;">Display total
+                        after taxes</label>
+                </div>
+            </div>
+        </div>
+        <% if(allListings.length==0) { %>
+            <h3 class="noListing"><i class="fa-solid fa-magnifying-glass"></i> &nbsp;No such listing. please enter valid
+                name!</h3>
+            <%}%>
+
+                <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+
+                    <% for(let listing of allListings){%>
+                        <a href="/listings/<%=listing._id%>" class="listing-link">
+                            <div class="card col listing-card">
+                                <div class="imgHovers mb-2" style="box-shadow: 10px 10px 10px rgba(0,0,0, 0.45);">
+                                    <!-- <img src="/images/heart.png" class="" id="heart" alt="Heart"/> -->
+                                    <div class="like-button" id="<%=listing._id%>"
+                                        style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                                        <div class="heart-bg">
+                                            <div class="heart-icon"></div>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <%= listing.like.length %>
+                                    </p>
+                                    <img src="<%= listing.image.url %>" class="card-img-top imgHover lis-card" id="imgh"
+                                        alt="listing_image" style="height: 20rem;" />
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <b>
+                                            <%=listing.title%>
+                                        </b> <br>
+                                        <span class="price-info">
+                                            &#8377;<%= listing.price.toLocaleString("en-IN") %> / night
+                                        </span>
+                                        <span class="tax-info" style="display: none;">
+                                            <!-- Initial display is set to none -->
+                    
+                                            <i class="rs-sign"><b> &#8377;<%= (listing.price *
+                                                        1.18).toLocaleString("en-IN") %></b>
+                                                &nbsp; +18% total after taxes
+                                            </i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <%}%>
+                </div>
+    </body>
+    <script>
+
+        let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+        taxSwitch.addEventListener("click", () => {
+            let taxInfoElements = document.querySelectorAll(".tax-info");
+            let priceInfoElements = document.querySelectorAll(".price-info");
+            for (let i = 0; i < taxInfoElements.length; i++) {
+                if (taxSwitch.checked) {
+                    taxInfoElements[i].style.display = "inline";
+                    priceInfoElements[i].style.display = "none";
+                } else {
+                    taxInfoElements[i].style.display = "none";
+                    priceInfoElements[i].style.display = "inline";
+                }
+            }
+        });
+
+        if ('<%= active %>') {
+            document.querySelector('#filters').querySelector('#<%= active %>').classList.add("active");
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const likeButtons = document.querySelectorAll(".like-button");
+
+            // Function to display flash messages
+            const displayFlashMessage = (message) => {
+                const flashContainer = document.getElementById('flash-container');
+                const flashMessage = document.createElement('div');
+                flashMessage.className = 'flash-message';
+                flashMessage.textContent = message;
+
+                flashContainer.appendChild(flashMessage);
+
+                // Remove the flash message after 5 seconds
+                setTimeout(() => {
+                    flashMessage.remove();
+                }, 5000);
+            };
+
+
+
+            // Iterate through each like button
+            likeButtons.forEach(likeButton => {
+                const heartIcon = likeButton.querySelector(".heart-icon");
+                const likesAmountLabel = likeButton.nextElementSibling; // Assumes likes-amount is a sibling element
+                const listingId = likeButton.getAttribute("id");
+
+                // Check localStorage for liked state
+                if (localStorage.getItem(`liked_${listingId}`) === 'true') {
+                    heartIcon.classList.add('liked');
+                }
+
+                // Prevent the default click behavior on the heart icon
+                heartIcon.addEventListener("click", (event) => {
+                    event.preventDefault();
+                });
+
+                likeButton.addEventListener("click", async () => {
+                    if (!heartIcon.classList.contains('liked')) {
+                        try {
+                            const response = await fetch('/listings/like', {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+                                },
+                                body: JSON.stringify({ listingId })
+                            });
+                            const data = await response.json();
+
+                            if (data) {
+                                likesAmountLabel.textContent = data.like.length;
+                                heartIcon.classList.add('liked'); // Add the liked class
+                                localStorage.setItem(`liked_${listingId}`, 'true');
+                            } else {
+                                displayFlashMessage('You need to logedin to like the listing!');
+                            }
+                        } catch (error) {
+                            displayFlashMessage('You need to logedin to like the listing!');
+                        }
+                    } else {
+                        try {
+                            const response = await fetch('/listings/unlike', {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + localStorage.getItem("jwt")
+                                },
+                                body: JSON.stringify({ listingId })
+                            });
+                            const data = await response.json();
+
+                            if (data) {
+                                likesAmountLabel.textContent = data.like.length;
+                                heartIcon.classList.remove('liked'); // Remove the liked class
+                                localStorage.setItem(`liked_${listingId}`, 'false');
+                            } else {
+                                displayFlashMessage('You need to logedin to unLike the listing!');
+                            }
+                        } catch (error) {
+                            displayFlashMessage('You need to logedin to unLike the listing!');
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
