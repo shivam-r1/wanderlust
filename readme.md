@@ -156,7 +156,7 @@ Contributions are always welcome!
 Please fork the repository and submit a pull request with your changes. For bug reports or feature requests, please open an issue in the GitHub repository.
 
 
-# Hi, I'm Katherine! 👋
+# Hi, I'm Tarush! 👋
 
 
 ## 🚀 About Me
