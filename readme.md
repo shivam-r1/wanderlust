@@ -10,7 +10,7 @@ This project is a full-stack web application that replicates the core functional
 
 ## Authors
 
-- [@Tarush](https://www.github.com/tarush5253)
+- [@Shivam](https://www.github.com/shivam-r1)
 
 # Technologies Used
 
@@ -156,7 +156,7 @@ Contributions are always welcome!
 Please fork the repository and submit a pull request with your changes. For bug reports or feature requests, please open an issue in the GitHub repository.
 
 
-# Hi, I'm Tarush! 👋
+# Hi, I'm Shivam! 👋
 
 
 ## 🚀 About Me
@@ -164,9 +164,7 @@ I'm a MERN Stack developer...
 
 
 ## 🔗 Links
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://tarush5253.github.io/my-portfolio/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tarushruhela/)
-[![Instagram](https://img.shields.io/badge/instagram-1DA1F2?style=for-the-badge&logo=instagram&logoColor=pink)](https://www.instagram.com/t_rush0r/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shivam-dtu/)
 
 
 ## 🛠 Skills
@@ -176,5 +174,5 @@ HTML , CSS , Bootstrap , TailwindCSS , Javascript , React , Node.js , Express.js
 
 ## Feedback
 
-If you have any feedback, please reach out to us at tarushruhela1234@gmail.com
+If you have any feedback, please reach out to us at official.shivam0103@gmail.com
 
