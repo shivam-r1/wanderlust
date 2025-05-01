@@ -5,7 +5,7 @@ This project is a full-stack web application that replicates the core functional
 
 
 
-![Logo](https://res.cloudinary.com/dnd5xffi3/image/upload/v1721545024/Wanderlust_Dev/pj3wxca2trzbpy6t6ebq.png)
+
 
 
 ## Authors
